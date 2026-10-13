@@ -17,13 +17,14 @@ const protect = async (req, res, next) => {
       });
     }
     const decode = await jwt.verify(token, process.env.JWT_KEY);
-    const user = User.findById(decode.userID);
+    const user = await User.findById(decode.userID);
     if (!user) {
       return res.status(404).json({
         success: false,
         message: "user not found",
       });
     }
+    req.user = user;
     next();
   } catch (err) {
     return res.status(500).json({
@@ -33,3 +34,5 @@ const protect = async (req, res, next) => {
     });
   }
 };
+
+module.exports = protect;

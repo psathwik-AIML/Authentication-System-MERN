@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("./config/database");
 const authRouter = require("./routes/authRoutes");
 const app = express();
 // middlewares
 app.use(express.json());
+app.use(cors());
 // database connection
 connectDB();
 // routes

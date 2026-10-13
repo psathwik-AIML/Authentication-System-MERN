@@ -16,9 +16,10 @@ const googleLogin = async (req, res) => {
     //   data recieved from google
     const payload = ticket.getPayload();
     const { sub, email, name } = payload;
-    console.log("payload:", payload);
+    // console.log("payload:", payload);
     // check user existing or not
     const existUser = await User.findOne({ email });
+    console.log("exi :", existUser);
     if (!existUser) {
       User.create({
         name,
