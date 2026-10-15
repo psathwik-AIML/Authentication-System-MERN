@@ -3,6 +3,8 @@ import AuthPage from "./pages/AuthPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Protected from "./components/Protected";
+import NotFound from "./pages/NotFound";
+import Success from "./pages/Success";
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +18,8 @@ function App() {
             </Protected>
           }
         />
+        <Route path="/github-success" element={<Success />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

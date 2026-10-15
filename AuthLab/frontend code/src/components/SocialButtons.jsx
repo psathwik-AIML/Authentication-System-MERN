@@ -25,7 +25,10 @@ function SocialButtons() {
           />
         </div>
       </div>
-      <button className="social github">
+      <button
+        className="social github"
+        onClick={() => (window.location.href = `${URL}/github`)}
+      >
         <FaGithub />
         Github Login
       </button>

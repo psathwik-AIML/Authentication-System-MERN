@@ -94,3 +94,12 @@ body {
   /* border: 2px solid red; */
   margin-top: 10px;
 }
+.not {
+  width: 300px;
+  margin: 100px auto;
+  padding: 30px;
+  text-align: center;
+  font-size: 70px;
+  background-color: black;
+  color: red;
+}

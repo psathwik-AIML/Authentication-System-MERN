@@ -19,10 +19,10 @@ const googleLogin = async (req, res) => {
     const { sub, email, name } = payload;
     console.log("payload:", payload);
     // check user existing or not
-    const existUser = await User.findOne({ email });
+    let existUser = await User.findOne({ email });
     // console.log("exi :", existUser);
     if (!existUser) {
-      await User.create({
+      existUser = await User.create({
         name,
         email,
         provider: "google",
@@ -79,6 +79,7 @@ const githubCallback = async (req, res) => {
     );
     // console.log("token response :", tokenRequest.data);
     const accessToken = tokenRequest.data.access_token;
+    console.log("tokkkk :", accessToken);
     if (!accessToken) {
       return res.status(404).json({ message: "token not found" });
     }
@@ -103,10 +104,10 @@ const githubCallback = async (req, res) => {
     const email = emailDetails.email;
     // console.log("email :", email);
     // find user in data base
-    const existUser = await User.findOne({ email });
+    let existUser = await User.findOne({ email });
     // store in database
     if (!existUser) {
-      await User.create({
+      existUser = await User.create({
         name: user,
         email,
         provider: "github",
@@ -115,7 +116,7 @@ const githubCallback = async (req, res) => {
     }
     // generate token
     const generatedToken = jwt.sign(
-      { roll_no: existUser._id },
+      { userID: existUser._id },
       process.env.JWT_KEY,
     );
     res.redirect(
